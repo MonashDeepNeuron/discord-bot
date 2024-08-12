@@ -25,7 +25,7 @@ module.exports = {
   
 		try {
 			await member.roles.add(role);
-			await interaction.reply( {content: `The role ${role.name} has been added to ${member.user.username}.`, ephemeral: false } );
+			await interaction.reply( {content: `The role **${role.name}** has been added to **${member.user.username}**.`, ephemeral: false } );
       	} catch (error) {
         	console.error(error);
         	await interaction.reply( {content: 'There was an error giving the role.', ephemeral: true } );
