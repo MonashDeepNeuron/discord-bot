@@ -10,13 +10,15 @@ module.exports = {
     	.addUserOption(option =>
         option.setName('user')
         	.setDescription('The user to remove the role from.')
-        	.setRequired(true))
+        	.setRequired(true)
+		)
 		
 		// Get input for which role to remove
     	.addRoleOption(option =>
         option.setName('role')
         	.setDescription('The role to remove from the user.')
-        	.setRequired(true)),
+        	.setRequired(true)
+		),
 			
     async execute(interaction) {
     	const guild = interaction.guild;

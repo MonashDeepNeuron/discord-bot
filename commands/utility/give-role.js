@@ -10,13 +10,15 @@ module.exports = {
     	.addUserOption(option =>
         option.setName('user')
         	.setDescription('The user to give the role to.')
-        	.setRequired(true))
+        	.setRequired(true)
+		)
 
 		// Get input for which role to give
     	.addRoleOption(option =>
         option.setName('role')
         	.setDescription('The role to give to the user.')
-        	.setRequired(true)),
+        	.setRequired(true)
+		),
 			
     async execute(interaction) {
     	const guild = interaction.guild;
