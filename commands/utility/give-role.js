@@ -3,7 +3,7 @@ const { SlashCommandBuilder, PermissionFlagsBits } = require('discord.js');
 module.exports = {
     data: new SlashCommandBuilder()
     	.setName('give-role')
-    	.setDescription('Give a user a role.')
+    	.setDescription('Give a user a role')
 		.setDefaultMemberPermissions(PermissionFlagsBits.ManageRoles)
 
     	// Get input for which user to give role to

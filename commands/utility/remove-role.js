@@ -3,7 +3,7 @@ const { SlashCommandBuilder, PermissionFlagsBits } = require('discord.js');
 module.exports = {
     data: new SlashCommandBuilder()
     	.setName('remove-role')
-    	.setDescription('Remove a role from a user.')
+    	.setDescription('Remove a role from a user')
 		.setDefaultMemberPermissions(PermissionFlagsBits.ManageRoles)
 
     	// Get input for which user to remove role from

@@ -22,7 +22,6 @@ module.exports = {
             .setMinLength(7)
             .setMaxLength(7)),
 
-    
     async execute(interaction) {
         // Get parameters from interaction
         const guild = interaction.guild;
