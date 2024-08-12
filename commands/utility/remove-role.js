@@ -25,7 +25,7 @@ module.exports = {
   
 		try {
 			await member.roles.remove(role);
-			await interaction.reply( {content: `The role ${role.name} has been removed from ${member.user.username}.`, ephemeral: true } );
+			await interaction.reply( {content: `The role ${role.name} has been removed from ${member.user.username}.`, ephemeral: false } );
       	} catch (error) {
         	console.error(error);
         	await interaction.reply( {content: 'There was an error removing the role.', ephemeral: true } );
