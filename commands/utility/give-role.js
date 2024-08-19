@@ -21,8 +21,7 @@ module.exports = {
 		),
 			
     async execute(interaction) {
-    	const guild = interaction.guild;
-    	const member = guild.members.cache.get(interaction.options.getUser('user').id);
+    	const member = interaction.options.getMember('user');
     	const role = interaction.options.getRole('role');
   
 		try {
