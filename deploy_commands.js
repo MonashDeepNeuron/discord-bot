@@ -3,6 +3,9 @@ const { clientId, guildId, token } = require('./config.json');
 const fs = require('node:fs');
 const path = require('node:path');
 
+// Check if -global flag was used
+const global = process.argv[2] && process.argv[2] === '-global';
+
 const commands = [];
 // Grab all the command folders from the commands directory
 const foldersPath = path.join(__dirname, 'commands');
@@ -34,8 +37,8 @@ const rest = new REST().setToken(token);
 
 		// The put method is used to fully refresh all commands in the guild with the current set
 		const data = await rest.put(
-			Routes.applicationGuildCommands(clientId, guildId),
-            // change above to Routes.applicationCommands(clientId) to make commands global
+			// Deploy commands either to globally or to dev server
+			global ? Routes.applicationCommands(clientId) : Routes.applicationGuildCommands(clientId, guildId),
 			{ body: commands },
 		);
 

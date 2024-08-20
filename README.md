@@ -3,7 +3,8 @@ Discord bot for MDN discord server.
 Requires node v18+, run `npm install` to get required modules.
 
 Run `node ./index.js` to start the application.
-If a slash command is added/removed or any command **data** is modified (i.e. name, description, parameters), then run `node ./deploy_commands.js` to sync this information with Discord.
+
+If a slash command is added/removed or any command **data** is modified (i.e. name, description, parameters), then run `node ./deploy_commands.js` to sync this information with the development server on Discord. Use the `-global` flag to deploy these commands globally (to every Discord server the bot is in).
 
 ## Config File
 The bot will need a *config.json* file in the root of the folder, in the following form:
