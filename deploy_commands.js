@@ -3,8 +3,9 @@ const { clientId, guildId, token } = require('./config.json');
 const fs = require('node:fs');
 const path = require('node:path');
 
-// Check if -global flag was used
-const global = process.argv[2] && process.argv[2] === '-global';
+// Check for flags
+const global = process.argv.includes('-global');
+const testing = process.argv.includes('-testing')
 
 const commands = [];
 // Grab all the command folders from the commands directory
@@ -12,6 +13,9 @@ const foldersPath = path.join(__dirname, 'commands');
 const commandFolders = fs.readdirSync(foldersPath);
 
 for (const folder of commandFolders) {
+	// Don't deploy the commands in 'testing/' if -testing flag isn't used
+	if (!testing && folder === 'testing') continue;
+
 	// Grab all the command files from the commands directory
 	const commandsPath = path.join(foldersPath, folder);
 	const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
