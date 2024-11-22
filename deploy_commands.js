@@ -3,12 +3,19 @@ const { clientId, guildId, token } = require('./config.json');
 const fs = require('node:fs');
 const path = require('node:path');
 
+// Check for flags
+const global = process.argv.includes('-global');
+const testing = process.argv.includes('-testing')
+
 const commands = [];
 // Grab all the command folders from the commands directory
 const foldersPath = path.join(__dirname, 'commands');
 const commandFolders = fs.readdirSync(foldersPath);
 
 for (const folder of commandFolders) {
+	// Don't deploy the commands in 'testing/' if -testing flag isn't used
+	if (!testing && folder === 'testing') continue;
+
 	// Grab all the command files from the commands directory
 	const commandsPath = path.join(foldersPath, folder);
 	const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
@@ -34,8 +41,8 @@ const rest = new REST().setToken(token);
 
 		// The put method is used to fully refresh all commands in the guild with the current set
 		const data = await rest.put(
-			Routes.applicationGuildCommands(clientId, guildId),
-            // change above to Routes.applicationCommands(clientId) to make commands global
+			// Deploy commands either to globally or to dev server
+			global ? Routes.applicationCommands(clientId) : Routes.applicationGuildCommands(clientId, guildId),
 			{ body: commands },
 		);
 
