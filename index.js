@@ -3,10 +3,10 @@ const path = require('node:path'); // Node path utility module, helps to constru
 
 // Require discord.js classes and bot token
 const { Client, Collection, Events, GatewayIntentBits } = require('discord.js');
-const { token } = require('./config.json');
+const { discordToken } = require('./config.json');
 
 // Create the client instance
-const client = new Client({ intents: [GatewayIntentBits.Guilds] });
+const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers] });
 client.commands = new Collection();
 
 // Get the path to the commands folder and gets an array of all folders inside
@@ -66,4 +66,4 @@ client.once(Events.ClientReady, readyClient => {
 	console.log(`Ready! Logged in as ${readyClient.user.tag}`);
 });
 
-client.login(token)
+client.login(discordToken)
